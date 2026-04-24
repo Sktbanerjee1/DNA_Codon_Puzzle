@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codon Quest — A DNA Day Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+<div class="bg-grid"></div>
+<div class="floating-bases" id="floating-bases"></div>
+
+<div class="container">
+  <div class="header">
+    <div class="title-block">
+      <div class="eyebrow">DNA Day · April 25</div>
+      <h1>Codon <em>Quest</em></h1>
+      <div class="subtitle">Encode a message into DNA. Let mutation strike. Decode what's left — if anything survives.</div>
+    </div>
+    <div class="score-panel">
+      <div class="score-round" id="round-label">Round 1</div>
+      <div>
+        <span class="score-value" id="score-value">0</span>
+        <button class="help-btn" id="help-btn" title="Revisit the intro">?</button>
+      </div>
+      <div class="score-label">Points</div>
+    </div>
+  </div>
+
+  <div class="phases" id="phases">
+    <div class="phase active" data-phase="encode"><span class="phase-num">01</span>Encode</div>
+    <div class="phase" data-phase="mutate"><span class="phase-num">02</span>Mutate</div>
+    <div class="phase" data-phase="decode"><span class="phase-num">03</span>Decode</div>
+    <div class="phase" data-phase="reveal"><span class="phase-num">04</span>Score</div>
+  </div>
+
+  <div class="game-area" id="game-area"></div>
+
+  <div class="teaching-note">
+    <strong>For the teacher</strong>
+    This game uses the real standard genetic code — all 64 codons coding for 20 amino acids plus 3 stop codons (TAA, TAG, TGA). Words are spelled in amino acid one-letter codes. To keep things accessible for middle schoolers, mutations are restricted to <em>single-base substitutions</em>, which lets students explore three big concepts: <em>degeneracy</em> — most amino acids have multiple synonymous codons, so the same word can be encoded different ways each round; <em>silent mutations</em> — substitutions that produce a synonymous codon, leaving the protein unchanged; <em>missense mutations</em> — substitutions that swap one amino acid for another (sickle cell anemia is a real example); and <em>nonsense mutations</em> — substitutions that create a premature stop codon, truncating the protein. Frameshifts (insertions and deletions) are intentionally omitted — they're conceptually heavier and worth a separate lesson once students are comfortable with the codon table.
+  </div>
+</div>
+
+<!-- Floating codon reference -->
+<button class="codon-fab" id="codon-fab" aria-label="Open codon reference">
+  <span class="codon-fab-icon">
+    <span class="stack-line">A T</span>
+    <span class="stack-line">G C</span>
+  </span>
+</button>
+
+<div class="codon-panel" id="codon-panel" role="dialog" aria-labelledby="codon-panel-title">
+  <div class="codon-panel-header">
+    <div class="codon-panel-title" id="codon-panel-title">Codon reference</div>
+    <div class="codon-panel-subtitle">Letter → DNA</div>
+  </div>
+  <div class="codon-panel-grid" id="codon-panel-grid"></div>
+  <div class="codon-panel-footer">
+    Simplified cipher: each letter maps to one 3-base codon. Real biology has 64 codons coding for 20 amino acids, so there's redundancy we've skipped for game purposes.
+  </div>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<script src="app.js"></script>
+</body>
+</html>
